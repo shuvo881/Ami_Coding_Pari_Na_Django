@@ -1,0 +1,44 @@
+<!doctype html>
+
+
+{% load static %}
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'css/authentication/login.css'%}">
+  <title>Login</title>
+</head>
+<body>
+{% block content %}
+   <div class="container">
+    <h2>Login</h2>
+    {% if error_message %}
+      <p class="text-danger">{{ error_message }}</p>
+    {% endif %}
+
+    {% if success_message%}
+      <p class="text-danger">{{ success_message }}</p>
+    {% endif %}
+
+    <form method="post">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" class="form-control" name="username" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" class="form-control" name="password" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+    <p class="registration-link">Don't have an account? <a href="{% url 'registration_view' %}">Register here</a></p>
+  </div>
+{% endblock %}
+</body>
+</html>
+
